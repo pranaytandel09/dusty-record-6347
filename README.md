@@ -1,6 +1,7 @@
 # Ghar Dekho- House Renting System
 
 Project Structure and Development
+==================================
 The system is a software solution designed to simplify the process of renting houses for both owners and tenants. The system provides a command-line interface for owners to manage their properties and for tenants to search for available houses, make rental offers, and track the status of their offers. The system aims to streamline the house renting process and provide a convenient platform for both owners and tenants. The system utilizes the Java programming language, MySQL as the database management system, and Hibernate as the Object-Relational Mapping (ORM) framework.
 
 # Table Schema
