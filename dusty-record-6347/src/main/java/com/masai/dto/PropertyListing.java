@@ -1,12 +1,18 @@
 package com.masai.dto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -33,20 +39,35 @@ public class PropertyListing {
 	@Column(nullable = false)
 	private double rent_amount;
 	private String description;
+	@Column(nullable = false)
+	private boolean availability_status;
 	
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name="owner_id")
+	private Owner owner;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="property_details_id")
 	private Property property;
+	
+	@OneToMany(mappedBy = "propertyListing")
+	private List<Offer> offers = new ArrayList<>();
+	
 	
 	public PropertyListing() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public PropertyListing(LocalDate listing_date, double rent_amount, String description) {
+	public PropertyListing(LocalDate listing_date, double rent_amount, String description, boolean availability_status,
+			Owner owner, Property property) {
 		super();
 		this.listing_date = listing_date;
 		this.rent_amount = rent_amount;
 		this.description = description;
+		this.availability_status = availability_status;
+		this.owner = owner;
+		this.property = property;
 	}
 
 	public int getProperty_listing_id() {
@@ -81,6 +102,22 @@ public class PropertyListing {
 		this.description = description;
 	}
 
+	public boolean isAvailability_status() {
+		return availability_status;
+	}
+
+	public void setAvailability_status(boolean availability_status) {
+		this.availability_status = availability_status;
+	}
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+
 	public Property getProperty() {
 		return property;
 	}
@@ -88,6 +125,15 @@ public class PropertyListing {
 	public void setProperty(Property property) {
 		this.property = property;
 	}
+
+	public List<Offer> getOffers() {
+		return offers;
+	}
+
+	public void setOffers(List<Offer> offers) {
+		this.offers = offers;
+	}
+
 	
 	
 }

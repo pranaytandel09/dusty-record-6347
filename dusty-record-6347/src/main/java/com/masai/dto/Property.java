@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -33,11 +34,6 @@ public class Property {
 	@Column(nullable = false)
 	private String location;
 	
-	@JoinColumn(name="owner_id")
-	private Owner owner;
-	
-	@OneToOne(mappedBy = "property",cascade = CascadeType.ALL)
-	private PropertyListing propertyListing;
 	
 	public Property() {
 		super();
@@ -83,22 +79,5 @@ public class Property {
 		this.location = location;
 	}
 
-	public Owner getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Owner owner) {
-		this.owner = owner;
-	}
-
-	public PropertyListing getPropertyListing() {
-		return propertyListing;
-	}
-
-	public void setPropertyListing(PropertyListing propertyListing) {
-		this.propertyListing = propertyListing;
-	}
-	
-	
 	
 }

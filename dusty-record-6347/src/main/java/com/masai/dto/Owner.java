@@ -26,20 +26,20 @@ public class Owner {
 	private String ownerName;
 	
 	@OneToMany(mappedBy = "owner" ,cascade = CascadeType.ALL)
-	private List<Property> property;
+	private List<PropertyListing> PropertyList;
 	
 	public Owner() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Owner(String username, String password, String email, String ownerName, List<Property> property) {
+	public Owner(String username, String password, String email, String ownerName, List<PropertyListing> PropertyList) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.ownerName = ownerName;
-		this.property= property;
+		this.PropertyList= PropertyList;
 	}
 
 	public int getOwner_id() {
@@ -78,12 +78,12 @@ public class Owner {
 		this.ownerName = ownerName;
 	}
 
-	public List<Property> getProperty() {
-		return property;
+	public List<PropertyListing> getPropertyList() {
+		return PropertyList;
 	}
 
-	public void setProperty(List<Property> property) {
-		this.property = property;
+	public void setPropertyList(List<PropertyListing> property) {
+		this.PropertyList = property;
 	}
 	
 	
